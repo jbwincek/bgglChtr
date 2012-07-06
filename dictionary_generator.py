@@ -75,6 +75,22 @@ def extract_a_random_sampling(word_list, how_many):
 		working_word_list.append(random.choice(word_list))
 	return working_word_list
 
+def update_dictionary_entries(word_list, the_dict):
+	"""Return a dictionary with values equal to True for keys that are complete words."""
+	for word in word_list:
+		the_dict[word] = True
+	return the_dict
+
+def write_completed_dictionary_to_file(the_dict):
+	"""Writes the_dict to usable_dictionary.json in the same folder, creates it if it doesn't exist."""
+	try:
+		outputLocation = open('usable_dictionary.json','w')
+		outputString = str(the_dict)
+		outputLocation.write(outputString)
+		outputLocation.close()
+	except IOError:
+		print ("could not open file")
+
 def compare(): pass
 	
 def run(which_func, word_list, min_length, max_length):
@@ -88,7 +104,9 @@ def run(which_func, word_list, min_length, max_length):
 	#print(three_long)
 	#print(the_dict)
 	the_dict = which_func(word_list, min_length, max_length)
-	print the_dict
+	the_dict = update_dictionary_entries(word_list, the_dict)
+	#print the_dict
+	write_completed_dictionary_to_file(the_dict)
 
 
 try:
@@ -110,8 +128,8 @@ random_sample = extract_a_random_sampling(word_list, 5)
 
 
 print ( 'random_sample is %d words long and is:\n %s' % (len(random_sample), str(random_sample)))
-run(quicker_build_the_dictionary,random_sample, 3, 13)
-run(build_the_dictionary,random_sample, 3, 13)
+run(quicker_build_the_dictionary,word_list, 3, 13)
+#run(build_the_dictionary,random_sample, 3, 13)
 
 
 
