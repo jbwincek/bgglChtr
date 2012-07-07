@@ -85,28 +85,46 @@ class Graph(dict):
         v,w = e
         self[v][w] = None
         self[w][v] = None
-
+		
+    def vertices(self):
+        """Returns all the vertices in the graph"""
+        return self.keys()
+    
+    def edges(self):
+        """Returns all the edges within a graph. Returns a non-flat list"""
+        return_list  = []
+        for key in self.keys():
+            return_list.append(self[key].values())
+        return return_list
+		
+    def out_vertices(self, v):
+        """Returns a list of a vertice's neighbors. Returns a non-flat list"""
+        neighbor_list = []
+        for neighbor in self[v]:
+            neighbor_list.append(neighbor)
+        return neighbor_list
+			
 def main(script, *args):
     v = Vertex('v')
-   # print v
+    # print v
     w = Vertex('w')
-    #print w
+    # print w
     y = Vertex('y')
     e = Edge(v, w)
-    print e
+    # print e
     e2 = Edge(y, w)
     g = Graph([v,w], [e])
     g.add_vertex(y)
-    print g
-    #edge = g.get_edge(v,w)
+    # print g
+    edge = g.get_edge(v,w)
     g.add_edge(e2)
-    #print e2
-    g.remove_edge(e2)
-    print g
-    #e3 = g.get_edge(v, w)
-    #print e3    
-    print 'dickks'
-
+    # print e2
+    # print g
+    e3 = g.get_edge(v, w)
+    # print e3    
+    print g.out_vertices(w)
+    print g.out_vertices(v)
+    print g.out_vertices(y)
 
 if __name__ == '__main__':
     import sys
