@@ -8,9 +8,17 @@
 
 import sys
 import Graph
+from termcolor import colored 
 
 def find_graph_edges(graph_of_letters, vertex_holder):
-	"""Loop through all the vertices and find edges based on position"""
+	"""Loop through all the vertices and find edges based on position
+		Nodes are laid out like: 
+		 0  1  2  3 
+		 4  5  6  7
+		 8  9 10 11 
+		12 13 14 15
+		
+	"""
 	for i in range(0,len(vertex_holder)):
 		#Get edges to the right and left
 		if (i+1) < 16 and ((i+1)%4) != 0:
@@ -29,7 +37,7 @@ def find_graph_edges(graph_of_letters, vertex_holder):
 			e = Graph.Edge(vertex_holder[i], vertex_holder[i+5])
 			graph_of_letters.add_edge(e)
 			
-			
+		
 # The main function for bgglChtr
 def main_function():
 	"""The main function for bgglChtr.\n
@@ -54,7 +62,7 @@ def main_function():
 			else: 
 				print("%s is not a character" % sys.argv[i])
 	except IndexError:
-		print('Please enter 16 character to populate the board:')
+		print colored('Please enter 16 character to populate the board:','blue')
 		for i in range(1,17):
 			chars_good = False
 			while not chars_good:
@@ -77,8 +85,8 @@ def main_function():
 			print('\n'),
 	
 	graph_of_letters = Graph.Graph(vertex_holder, [])
-	find_graph_edges(graph_of_letters, vertex_holder)
-	for i in range(0,len(vertex_holder)):
-		print(repr(vertex_holder[i]) + ' = ' + repr(graph_of_letters.out_vertices(vertex_holder[i])))
+	graph_of_letters.find_graph_edges(vertex_holder)
+	#for i in range(0,len(vertex_holder)):
+		#print(repr(vertex_holder[i]) + ' = ' + repr(graph_of_letters.out_vertices(vertex_holder[i])))
 
 main_function()
