@@ -10,31 +10,25 @@ import sys
 import Graph
 
 def find_graph_edges(graph_of_letters, vertex_holder):
+	"""Loop through all the vertices and find edges based on position"""
 	for i in range(0,len(vertex_holder)):
+		#Get edges to the right and left
 		if (i+1) < 16 and ((i+1)%4) != 0:
 			e = Graph.Edge(vertex_holder[i], vertex_holder[i+1])
 			graph_of_letters.add_edge(e)
-		if (i-1) >= 0 and ((i-1)%4) != 3:
-			e = Graph.Edge(vertex_holder[i], vertex_holder[i-1])
-			graph_of_letters.add_edge(e)
+		#Get edges diagonally /
 		if (i+3) < 16 and ((i+3)%4) != 3:
 			e = Graph.Edge(vertex_holder[i], vertex_holder[i+3])
 			graph_of_letters.add_edge(e)
-		if (i-3) >= 0 and ((i-3)%4) != 0:
-			e = Graph.Edge(vertex_holder[i], vertex_holder[i-3])
-			graph_of_letters.add_edge(e)
+		#Get edges vertically
 		if (i+4) < 16:
 			e = Graph.Edge(vertex_holder[i], vertex_holder[i+4])
 			graph_of_letters.add_edge(e)
-		if (i-4) >= 0:
-			e = Graph.Edge(vertex_holder[i], vertex_holder[i-4])
-			graph_of_letters.add_edge(e)
+		#Get edges diagonally \
 		if (i+5) < 16 and ((i+5)%4) != 0:
 			e = Graph.Edge(vertex_holder[i], vertex_holder[i+5])
 			graph_of_letters.add_edge(e)
-		if (i-5) >= 0 and ((i-5)%4) != 3:
-			e = Graph.Edge(vertex_holder[i], vertex_holder[i-5])
-			graph_of_letters.add_edge(e)
+			
 			
 # The main function for bgglChtr
 def main_function():
