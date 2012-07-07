@@ -62,13 +62,13 @@ class Graph(dict):
     def add_vertex(self, v):
         """Add a vertex to the graph."""
         self[v] = {}
-	
-	def get_edge(self, v, w):
-		"""Returns the edge between v and w"""
-		try:
-			return self[v][w]
-		except KeyError: 
-			return None
+    
+    def get_edge(self, v, w):
+        """Returns the edge between v and w"""
+    	try:
+            return self[v][w]
+        except KeyError: 
+            return None
 
     def add_edge(self, e):
         """Adds and edge to the graph by adding an entry in both directions.
@@ -80,11 +80,11 @@ class Graph(dict):
         self[v][w] = e
         self[w][v] = e
 
-	def remove_edge(self, e):
-		"""Removes the edge"""
-		v,w = e
-		self[v][w] = None
-		self[w][v] = None
+    def remove_edge(self, e):
+        """Removes the edge"""
+        v,w = e
+        self[v][w] = None
+        self[w][v] = None
 
 def main(script, *args):
     v = Vertex('v')
@@ -101,7 +101,7 @@ def main(script, *args):
     #edge = g.get_edge(v,w)
     g.add_edge(e2)
     #print e2
-    #g.remove_edge(e2)
+    g.remove_edge(e2)
     print g
     #e3 = g.get_edge(v, w)
     #print e3    
