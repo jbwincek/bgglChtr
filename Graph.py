@@ -18,10 +18,10 @@ class Vertex(object):
         be evaluated as a Python expression."""
         return 'Vertex(%s)' % repr(self.label)
 
-    __str__ = __repr__
-    """The str and repr forms of this object are the same."""
+    def __str__(self):
+        return 'V(%s)' % str(self.label)
 
-
+		
 class Edge(tuple):
     """An Edge is a list of two vertices."""
 
@@ -36,8 +36,8 @@ class Edge(tuple):
         be evaluated as a Python expression."""
         return 'Edge(%s, %s)' % (repr(self[0]), repr(self[1]))
 
-    __str__ = __repr__
-    """The str and repr forms of this object are the same."""
+    def __str__(self):
+        return 'E[%s, %s]' % (repr(self[0]), repr(self[1]))
 
 
 class Graph(dict):
