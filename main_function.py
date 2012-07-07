@@ -28,28 +28,33 @@ def main_function():
 	graph_placeHolder = []
 	try:
 		for i in range(2,18):
-			graph_placeHolder.append(sys.argv[i]);
+			if sys.argv[i].isalpha():
+				graph_placeHolder.append(sys.argv[i]);
+			else: 
+				print("%s is not a character" % sys.argv[i])
 	except IndexError:
 		print('Please enter 16 character to populate the board:')
 		for i in range(1,17):
 			chars_good = False
 			while not chars_good:
-				input_chars = raw_input(repr(i) + ') ')
-				if isinstance(input_chars, str) and len(input_chars) <= 2 and input_chars != None:
+				input_chars = raw_input('%d.) ' % i).strip() #chars is plural because the Qu case
+				if input_chars.isalpha() and len(input_chars) <= 2:
 					graph_placeHolder.append(input_chars)
 					chars_good = True
 				else:
-					print('Please enter characters of max length 2')
+					print("'%s' is not valid input. Please enter a either one or two characters" % input_chars)
 					chars_good = False
 				
 		
 	# Check that the graph has the correct number of items
 	if len(graph_placeHolder) != 16:
-		print('There are not 16 items in the graph, exitting...')
+		print('There are not 16 items in the graph, exiting...')
 		quit()
 		
-	for char in graph_placeHolder:
-		print(char + ", ")
+	for index in range(1,len(graph_placeHolder)+1):
+		print("%s "% graph_placeHolder[index-1]),
+		if index % 4 == 0:
+			print('\n'),
 	
 
 main_function()
