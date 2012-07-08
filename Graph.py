@@ -1,17 +1,23 @@
-""" Code example from Complexity and Computation, a book about
+""" Graph class that utilizes Vertex and Edge subclasses. 
+
+Based on the code example from Complexity and Computation, a book about
 exploring complexity science with Python.  Available free from
 
 http://greenteapress.com/complexity
 
 Copyright 2011 Allen B. Downey.
-Distributed under the GNU General Public License at gnu.org/licenses/gpl.html.
+Distributed under the GNU General Public License at gnu.org/licenses/gpl.html
+
+Authors: Thomas Fitzsimmons, J.B. Wincek
+
 """
 
 class Vertex(object):
 	"""A Vertex is a node in a graph."""
 
-	def __init__(self, label=''):
+	def __init__(self, label='', visited = False):
 		self.label = label
+		self.visited = False
 
 	def __repr__(self):
 		"""Returns a string representation of this object that can
@@ -20,7 +26,15 @@ class Vertex(object):
 
 	def __str__(self):
 		return 'V(%s)' % str(self.label)
-
+	
+	def visit():
+		self.visited = True
+	
+	def reset():
+		self.visited = False
+	
+	#def label():
+	#	return self.label
 		
 class Edge(tuple):
 	"""An Edge is a list of two vertices."""
@@ -125,34 +139,13 @@ class Graph(dict):
 			return_list.append(self[key].values())
 		return return_list
 		
-	def out_vertices(self, v):
+	def get_neighbors(self, v):
 		"""Returns a list of a vertice's neighbors. Returns a non-flat list"""
 		neighbor_list = []
 		for neighbor in self[v]:
 			neighbor_list.append(neighbor)
 		return neighbor_list
 			
-def main(script, *args):
-	v = Vertex('v')
-	# print v
-	w = Vertex('w')
-	# print w
-	y = Vertex('y')
-	e = Edge(v, w)
-	# print e
-	e2 = Edge(y, w)
-	g = Graph([v,w], [e])
-	g.add_vertex(y)
-	# print g
-	edge = g.get_edge(v,w)
-	g.add_edge(e2)
-	# print e2
-	# print g
-	e3 = g.get_edge(v, w)
-	# print e3	  
-	print g.out_vertices(w)
-	print g.out_vertices(v)
-	print g.out_vertices(y)
 
 if __name__ == '__main__':
 	import sys

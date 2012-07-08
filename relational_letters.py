@@ -1,6 +1,6 @@
 ###########################################################
 # Python Relational Letter Hasher Mapper 
-# Author: Thomas Fitzsimmons, Jeff Wincek
+# Author: Thomas Fitzsimmons, J.B. Wincek
 # 
 # This program will read in a large dictionary file
 # and go through character by character and count 

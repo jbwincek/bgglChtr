@@ -1,3 +1,10 @@
+"""Generates a dictionary of words, and beginning segments of words, used in the search algorithm. 
+
+Authors: Thomas Fitzsimmons, J.B. Wincek
+
+"""
+
+
 import cProfile 
 import random
 import sys
