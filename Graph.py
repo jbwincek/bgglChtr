@@ -33,8 +33,8 @@ class Vertex(object):
 	def reset():
 		self.visited = False
 	
-	#def label():
-	#	return self.label
+	def label_():
+		return self.label
 		
 class Edge(tuple):
 	"""An Edge is a list of two vertices."""

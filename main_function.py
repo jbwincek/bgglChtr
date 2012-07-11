@@ -12,28 +12,44 @@ import sys
 import Graph
 from termcolor import colored 
 
-segmented_dictionary = {}
+
 segmented_dictionary_location = 'usable_dictionary.json'
 
-def brute_force(graph,depth=5):
+def brute_force(graph,depth,segmented_dictionary):
+	print ("attempting to brute force the search.")
 	for vertex in graph.vertices():
-		brute_recurse(graph,vertex,depth,'')
+		brute_recurse(graph,vertex,depth,'',segmented_dictionary)
 			
-def brute_recurse(graph,vertex,depth,word):
+def brute_recurse(graph,vertex,depth,word,segmented_dictionary):
+	depth = int(depth) - 1
 	for neighbor in graph.get_neighbors(vertex):
+		if depth == 3:
+			print ("Vertex: %s, %d deep, " % (vertex,depth)),
+			print ("using neighbor: %s, Label: %s, Word: %s" % (neighbor,neighbor.label,word))
 		word = word + neighbor.label
-		try: 
-			if segmented_dictionary[word]:
-				print word
-			else:
+		#print( word + ' '),
+		if len(word) <=2:
+			brute_recurse(graph,neighbor,depth,word,segmented_dictionary)		
+		else:
+			try: 
+				if segmented_dictionary[word]:
+					print word
+				else:
+					if depth >= 1:
+						#print ("Attemping to recurse")
+						brute_recurse(graph,neighbor,depth,word,segmented_dictionary)
+					else: 
+						pass
+			except KeyError:
+				print ("KeyError: "),
 				if depth > 0:
-					brute_recurse(graph,neighbor,depth-1,word)
+					print ("Attemping to recurse beyond error.")
+					brute_recurse(graph,neighbor,1,word,segmented_dictionary)
 				else: 
-					break
-		except KeyError: 
-			break 		
-			
-def load_segmented_dictionary(file_location):
+					depth -= 1
+					break	
+				
+def load_(file_location):
 	"""Load the dictionary containing all the words used for the search algorithm."""
 	try:
 		
@@ -42,6 +58,7 @@ def load_segmented_dictionary(file_location):
 		inputString = inputLocation.read()
 		segmented_dictionary = eval(inputString)
 		print("Load complete.")
+		return segmented_dictionary
 	except IOError:
 		print colored('There was an error finding or opening the file.','red')
 		quit()
@@ -104,13 +121,15 @@ def main_function():
 		filename <depth> <letters in the board as they appear>"""
 	
 	vertex_holder = []	
-	load_segmented_dictionary(segmented_dictionary_location)
+	segmented_dictionary = load_(segmented_dictionary_location)
 	depth_of_search = get_depth()
 	vertext_holder = build_(vertex_holder)
 	
 	display_the_board(vertex_holder)
 	graph_of_letters = Graph.Graph(vertex_holder, [])
 	graph_of_letters.find_graph_edges(vertex_holder)
-	brute_force(graph_of_letters,depth_of_search)
+	brute_force(graph_of_letters,depth_of_search,segmented_dictionary)
+	#print segmented_dictionary
+
 
 main_function()

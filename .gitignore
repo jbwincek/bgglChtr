@@ -31,3 +31,5 @@ nosetests.xml
 
 #Mr Developer
 .mr.developer.cfg
+
+dictionary_generator_tester.pyc

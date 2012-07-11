@@ -88,12 +88,9 @@ except IOError:
 word_list_txt = word_list_txt_ob.read()
 word_list = word_list_txt.split()
 
-random_sample = tester.extract_a_random_sampling(word_list, 5)
+random_sample = tester.extract_a_random_sampling(word_list, 10)
 
-
-
-
-print ( 'random_sample is %d words long and is:\n %s' % (len(random_sample), str(random_sample)))
-run(quicker_build_the_dictionary,word_list, 3, 13)
-#run(build_the_dictionary,random_sample, 3, 13)
+#print ( 'random_sample is %d words long and is:\n %s' % (len(random_sample), str(random_sample)))
+#run(quicker_build_the_dictionary,word_list, 3, 13)
+run(quicker_build_the_dictionary,random_sample, 3, 13)
 
