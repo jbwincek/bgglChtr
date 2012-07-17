@@ -25,7 +25,7 @@ class Vertex(object):
 		return 'Vertex(%s)' % repr(self.label)
 
 	def __str__(self):
-		return 'V(%s)' % str(self.label)
+		return '%s' % str(self.label)
 	
 	def visit():
 		self.visited = True

@@ -11,6 +11,7 @@
 import sys
 import Graph
 from termcolor import colored 
+import BFS_algorithm as BFS
 
 
 segmented_dictionary_location = 'usable_dictionary.json'
@@ -128,8 +129,12 @@ def main_function():
 	display_the_board(vertex_holder)
 	graph_of_letters = Graph.Graph(vertex_holder, [])
 	graph_of_letters.find_graph_edges(vertex_holder)
-	brute_force(graph_of_letters,depth_of_search,segmented_dictionary)
+	#BFS.searcher(graph_of_letters,vertext_holder,segmented_dictionary)
+	
+	BFS.bfs_tester_v2(graph_of_letters,vertex_holder[5],segmented_dictionary)
+	#brute_force(graph_of_letters,depth_of_search,segmented_dictionary)
 	#print segmented_dictionary
+	
 
 
 main_function()
